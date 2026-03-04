@@ -1,0 +1,9 @@
+python-dotenv
+python-redmine
+langchain
+langchain-community
+langchain-openai
+faiss-cpu
+dashscope
+requests
+tenacity

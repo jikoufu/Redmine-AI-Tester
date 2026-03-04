@@ -1,0 +1,17 @@
+# 敏感环境配置文件
+.env
+
+# 向量数据库（本地数据索引）
+#index/
+#redmine_faiss/
+
+# AI 生成的报告
+temp_md/
+
+# Python 缓存与虚拟环境
+__pycache__/
+*.pyc
+venv/
+.venv/
+.idea/
+.vscode/
