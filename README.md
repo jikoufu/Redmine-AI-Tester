@@ -105,3 +105,63 @@ python main.py
 ## 📄 开源协议 | License
 
 本项目基于 [MIT License](https://www.google.com/search?q=LICENSE) 开源。
+
+
+## 项目结构
+
+```
+redmine-ai-helper/
+├── main.py                    # 程序入口，主菜单交互
+├── .env.example               # 环境变量配置模板
+├── requirements.txt
+│
+├── src/
+│   ├── core/                  # 核心业务逻辑
+│   │   ├── ai_engine.py       # AI 引擎（多角色 Prompt 管理）
+│   │   ├── session.py         # 会话 / 历史记录管理
+│   │   ├── analyze_flow.py    # 流程：分析 Issue → 生成报告
+│   │   ├── chat_flow.py       # 流程：自由多轮对话
+│   │   ├── history_flow.py    # 流程：查看 / 继续历史记录
+│   │   └── batch_flow.py      # 流程：批量多 Issue 汇总分析
+│   │
+│   ├── roles/                 # 角色 Prompt 定义（每个角色一个文件）
+│   │   ├── __init__.py
+│   │   ├── qa.py              # 测试开发工程师
+│   │   ├── pm.py              # 产品经理
+│   │   ├── dev.py             # 开发工程师
+│   │   └── base.py            # 角色基类（新增角色继承此类）
+│   │
+│   ├── search/                # 搜索模块
+│   │   ├── __init__.py
+│   │   ├── searcher.py        # 搜索调度器（联合 / 单独模式）
+│   │   ├── redmine_search.py  # Redmine 实时关键字搜索
+│   │   ├── vector_search.py   # 本地向量库语义搜索
+│   │   └── search_flow.py     # 流程：搜索 → 展示 → 跳转分析
+│   │
+│   ├── sync/                  # 数据同步模块
+│   │   ├── __init__.py
+│   │   ├── redmine_client.py  # Redmine API 客户端
+│   │   ├── vector_store.py    # 向量库管理（FAISS）
+│   │   └── sync_flow.py       # 流程：全量 / 增量同步
+│   │
+│   ├── export/                # 导出模块
+│   │   ├── __init__.py
+│   │   ├── exporter.py        # 导出调度器
+│   │   ├── markdown_export.py # 导出为 Markdown 文件
+│   │   ├── clipboard.py       # 复制到剪贴板
+│   │   └── redmine_comment.py # 回写到 Redmine 评论区（未实现）
+│   │
+│   └── utils/                 # 工具模块
+│       ├── __init__.py
+│       ├── privacy_guard.py   # 隐私脱敏
+│       └── logger.py          # 日志配置
+│
+├── tests/                     # 单元测试
+│   ├── test_core/
+│   ├── test_search/
+│   └── test_sync/
+│
+├── index/                     # 本地 FAISS 向量库（自动生成）
+├── temp_md/                   # 报告 / 对话记录输出目录
+└── logs/                      # 运行日志
+```
